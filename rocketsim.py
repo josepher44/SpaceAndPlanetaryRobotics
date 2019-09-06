@@ -1,12 +1,7 @@
 import pygame
-
 from pygame.locals import *
 
 #Basic loop structure from http://pygametutorials.wikidot.com/tutorials-basic
-
-
-import pygame
-from pygame.locals import *
 
 class App:
     def __init__(self):
