@@ -8,12 +8,15 @@ class App:
         self._running = True
         self._display_surf = None
         self._image_surf = None
+        self.BLUE = (0,0,255)
 
     def on_init(self):
         pygame.init()
         self._display_surf = pygame.display.set_mode((1600,800), pygame.HWSURFACE)
         self._running = True
         self._image_surf = pygame.image.load("kerbal.jpg").convert()
+
+
 
     #Detail definitions for three key loop elements
 
@@ -27,6 +30,8 @@ class App:
         pass
     def on_render(self):
         self._display_surf.blit(self._image_surf,(0,0))
+        pygame.draw.rect(self._display_surf, self.BLUE,(200,200,20,199))
+        #Refresh the full display
         pygame.display.flip()
 
     def on_cleanup(self):
