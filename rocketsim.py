@@ -1,4 +1,5 @@
 import pygame
+from rocketinstance import *
 from pygame.locals import *
 
 #Basic loop structure from http://pygametutorials.wikidot.com/tutorials-basic
@@ -8,13 +9,14 @@ class App:
         self._running = True
         self._display_surf = None
         self._image_surf = None
-        self.BLUE = (0,0,255)
+        self.rocket = None
 
     def on_init(self):
         pygame.init()
         self._display_surf = pygame.display.set_mode((1600,800), pygame.HWSURFACE)
         self._running = True
         self._image_surf = pygame.image.load("kerbal.jpg").convert()
+        self.rocket = rocket()
 
 
 
@@ -27,10 +29,11 @@ class App:
 
     #Loop definition
     def on_loop(self):
+        self.rocket.onloop()
         pass
     def on_render(self):
         self._display_surf.blit(self._image_surf,(0,0))
-        pygame.draw.rect(self._display_surf, self.BLUE,(200,200,20,199))
+        self.rocket.draw(self._display_surf)
         #Refresh the full display
         pygame.display.flip()
 
