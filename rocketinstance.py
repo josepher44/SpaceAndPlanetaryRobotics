@@ -21,4 +21,4 @@ class rocket:
             self.color = self.RED;
         else:
             self.color = self.BLUE;
-        pygame.draw.rect(surface, self.color,(self.xpos,self.ypos,20,199))
+        pygame.draw.line(surface, self.color,(self.xpos,self.ypos),(self.xpos+40, self.ypos+50),1)
