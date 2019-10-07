@@ -5,19 +5,19 @@ class asteroid:
     def __init__(self):
         self.RED = (255,0,0)
         self.color = None
-        self.xpos = 300
-        self.ypos = 400
+        self.xpospixels = 100
+        self.ypospixels = 400
         self.vspeed = 0
         self.hspeed = 32100
 
-    def onloop(self):
+    def onloop(self, secondsperhour):
         print('Asteroid still exists!')
         #Convert km/h to pixels/step -- 30 steps per second, 10 seconds per real
         #hour, 160.5 kilometers per pixel
-        self.hspeedpixels = self.hspeed*1.0/(140*30*10)
-        self.ypos = self.ypos+self.vspeed
-        self.xpos = self.xpos+self.hspeedpixels
-        print(self.xpos)
+        self.hspeedpixels = self.hspeed*1.0/(140*30*secondsperhour)
+        self.ypospixels = self.ypospixels+self.vspeed
+        self.xpospixels = self.xpospixels+self.hspeedpixels
+        print(self.xpospixels)
 
     def draw(self, surface):
-        pygame.draw.circle(surface, self.RED,(int(round(self.xpos)),int(round(self.ypos))),5)
+        pygame.draw.circle(surface, self.RED,(int(round(self.xpospixels)),int(round(self.ypospixels))),5)

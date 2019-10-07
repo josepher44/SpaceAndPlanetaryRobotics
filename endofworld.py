@@ -1,5 +1,6 @@
 import pygame
 from asteroid import *
+from bomb import *
 from pygame.locals import *
 
 #Basic loop structure from http://pygametutorials.wikidot.com/tutorials-basic
@@ -9,10 +10,12 @@ class App:
         self._running = True
         self._display_surf = None
         self._image_surf = None
-        self.rocket = None
+        self.asteroid = None
+        self.bomb = None
         self.BLACK = (0,0,0)
         self.BLUE = (0,0,255)
         self.clock = pygame.time.Clock()
+        self.secondsperhour = 0
 
     def on_init(self):
         pygame.init()
@@ -20,6 +23,8 @@ class App:
         self._running = True
         self._image_surf = pygame.image.load("kerbal.jpg").convert()
         self.asteroid = asteroid()
+        self.bomb = bomb()
+        self.secondsperhour = 10
 
 
 
@@ -32,12 +37,14 @@ class App:
 
     #Loop definition
     def on_loop(self):
-        self.asteroid.onloop()
+        self.asteroid.onloop(self.secondsperhour)
+        self.bomb.onloop(self.secondsperhour)
         self.clock.tick(30)
         pass
     def on_render(self):
         self._display_surf.fill(self.BLACK)
         self.asteroid.draw(self._display_surf)
+        self.bomb.draw(self._display_surf)
         pygame.draw.circle(self._display_surf, self.BLUE, (1340,400),40)
         #Refresh the full display
         pygame.display.flip()
