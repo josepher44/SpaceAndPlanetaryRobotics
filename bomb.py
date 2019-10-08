@@ -16,8 +16,9 @@ class bomb:
         #print('Bomb still exists!')
         #Convert km/h to pixels/step -- 30 steps per second, 10 seconds per real
         #hour, 160.5 kilometers per pixel
-        self.hspeed = self.componentsfromheading(0)[0]
-        self.vspeed = self.componentsfromheading(0)[1]
+        self.angle=self.angle+0.01
+        self.hspeed = self.componentsfromheading(self.angle)[0]
+        self.vspeed = self.componentsfromheading(self.angle)[1]
         self.hspeedpixels = self.hspeed*1.0/(140*30*secondsperhour)
         self.vspeedpixels = self.vspeed*1.0/(140*30*secondsperhour)
         self.ypospixels = self.ypospixels+self.vspeedpixels
